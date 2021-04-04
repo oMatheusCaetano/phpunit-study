@@ -79,7 +79,7 @@ class AppraiserTest extends TestCase
         $auction->addBid(new Bid($ana, 2200));
         $auction->addBid(new Bid($joao, 1000));
         $auction->addBid(new Bid($ana, $highestBidValue1));
-        $auction->addBid(new Bid($ana, 2000));
+        $auction->addBid(new Bid($joao, 2000));
         $auction->addBid(new Bid($maria, 2150));
         $auction->addBid(new Bid($joao, $highestBidValue3));
 

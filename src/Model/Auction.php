@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PHPUnitStudy\Study\Model;
 
+use PHPUnitStudy\Study\Exceptions\ConsecutiveBidsException;
+
 class Auction
 {
     /** @var array<Bid> $bids */
@@ -18,10 +20,13 @@ class Auction
 
     public function addBid(Bid $bid): self
     {
-        if (! $this->isUserOfTheLastAddedBid($bid->getUser())) {
-            array_push($this->bids, $bid);
+        if ($this->isUserOfTheLastAddedBid($bid->getUser())) {
+            throw new ConsecutiveBidsException(
+                'Same user can not throw consecutives bids.'
+            );
         }
 
+        array_push($this->bids, $bid);
         return $this;
     }
 

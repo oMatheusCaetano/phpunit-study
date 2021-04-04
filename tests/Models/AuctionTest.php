@@ -3,6 +3,7 @@
 namespace PHPUnitStudy\Study\Tests\Models;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnitStudy\Study\Exceptions\ConsecutiveBidsException;
 use PHPUnitStudy\Study\Model\Auction;
 use PHPUnitStudy\Study\Model\Bid;
 use PHPUnitStudy\Study\Model\User;
@@ -73,15 +74,12 @@ class AuctionTest extends TestCase
         $ana = new User('Ana');
         $validBidValue = 1500;
 
+        //* Assert
+        $this->expectException(ConsecutiveBidsException::class);
+        $this->expectExceptionMessage('Same user can not throw consecutives bids.');
+
         //* Act
         $this->auction->addBid(new Bid($ana, $validBidValue));
         $this->auction->addBid(new Bid($ana, 2000));
-
-        //* Assert
-        self::assertCount(1, $this->auction->getBids());
-        self::assertEquals(
-            $validBidValue,
-            $this->auction->getBids()[0]->getValue()
-        );
     }
 }
