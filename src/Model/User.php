@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PHPUnitStudy\Study\Model;
 
 class User
@@ -16,7 +18,7 @@ class User
         return $this->name;
     }
 
-    public function setName($name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
