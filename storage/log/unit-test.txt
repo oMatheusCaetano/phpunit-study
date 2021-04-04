@@ -1,6 +1,7 @@
 Auction (PHPUnitStudy\Study\Tests\Models\Auction)
  [x] Auction should receive bids with data set "Auction with one bid"
  [x] Auction should receive bids with data set "Auction with two bids"
+ [x] Auction should not receive consecutive bids from the same user
 
 Appraiser (PHPUnitStudy\Study\Tests\Services\Appraiser)
  [x] Appraiser should get highest bid from auction with data set "Auction with bids in ascending order"

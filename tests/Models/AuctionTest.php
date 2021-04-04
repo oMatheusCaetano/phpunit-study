@@ -9,8 +9,16 @@ use PHPUnitStudy\Study\Model\User;
 
 class AuctionTest extends TestCase
 {
+    private Auction $auction;
+
+    //**------- SET UP -------**//
+    public function setUp(): void
+    {
+        $this->auction = new Auction('Fiat 147 0Km');
+    }
+
     //**------- DATA PROVIDERS -------**//
-    public function createAuctionWithOneBid()
+    public function createAuctionWithOneBid(): array
     {
         $joao = new User('João');
         $bid1 = 3000;
@@ -23,7 +31,7 @@ class AuctionTest extends TestCase
         ];
     }
 
-    public function createAuctionWithTwoBids()
+    public function createAuctionWithTwoBids(): array
     {
         $maria = new User('Maria');
         $joao = new User('João');
@@ -40,7 +48,6 @@ class AuctionTest extends TestCase
     }
 
     //**------- TESTS -------**//
-
     /**
      * @dataProvider createAuctionWithOneBid
      * @dataProvider createAuctionWithTwoBids
@@ -58,5 +65,23 @@ class AuctionTest extends TestCase
         foreach ($bidsValues as $index => $bidValue) {        
             self::assertEquals($bidValue, $auction->getBids()[$index]->getValue());
         }
+    }
+
+    public function testAuctionShouldNotReceiveConsecutiveBidsFromTheSameUser(): void
+    {
+        //* Arrange
+        $ana = new User('Ana');
+        $validBidValue = 1500;
+
+        //* Act
+        $this->auction->addBid(new Bid($ana, $validBidValue));
+        $this->auction->addBid(new Bid($ana, 2000));
+
+        //* Assert
+        self::assertCount(1, $this->auction->getBids());
+        self::assertEquals(
+            $validBidValue,
+            $this->auction->getBids()[0]->getValue()
+        );
     }
 }
