@@ -21,7 +21,7 @@ class Auction
         if (! $this->isUserOfTheLastAddedBid($bid->getUser())) {
             array_push($this->bids, $bid);
         }
-        
+
         return $this;
     }
 
@@ -51,13 +51,15 @@ class Auction
 
     private function isUserOfTheLastAddedBid(User $user): bool
     {
-        if (! empty($this->bids)) {
-            $lastAddedBid = $this->bids[array_key_last($this->bids)];
-            if ($user == $lastAddedBid->getUser()) {
-                return true;
-            }
+        if (empty($this->bids)) {
+            return false;
         }
 
-        return false;
+        $lastAddedBid = $this->bids[array_key_last($this->bids)];
+        if ($user !== $lastAddedBid->getUser()) {
+            return false;
+        }
+
+        return true;
     }
 }

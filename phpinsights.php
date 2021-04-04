@@ -71,6 +71,7 @@ return [
         PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineEndingsSniff::class,
         PhpCsFixer\Fixer\Basic\BracesFixer::class,
         SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff::class,
+        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class,
     ],
 
     'config' => [],
