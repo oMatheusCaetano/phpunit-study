@@ -1,2 +1,6 @@
+#Files
+.phpunit*.cache
+
+#Folders
 vendor/
 .idea/

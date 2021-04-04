@@ -3,7 +3,7 @@
     "description": "Project created to study PHP Unit lib",
     "scripts": {
         "php-insights": "./vendor/bin/phpinsights",
-        "phpunit": "./vendor/bin/phpunit tests --colors"
+        "phpunit": "./vendor/bin/phpunit"
     },
     "autoload": {
         "psr-4": {

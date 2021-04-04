@@ -38,7 +38,7 @@ class AppraiserTest extends TestCase
         $auction->addBid(new Bid($ana, $highestBidValue1));
         $auction->addBid(new Bid($maria, $highestBidValue2));
 
-        return [[$auction]];
+        return ['Auction with bids in ascending order' => [$auction]];
     }
 
     public function createAuctionWithBidsInDescendingOrder(): array
@@ -60,7 +60,7 @@ class AppraiserTest extends TestCase
         $auction->addBid(new Bid($ana, 2000));
         $auction->addBid(new Bid($joao, 1000));
 
-        return [[$auction]];
+        return ['Auction with bids in descending order' => [$auction]];
     }
 
     public function createAuctionWithBidsInRandomOrder(): array
@@ -82,7 +82,7 @@ class AppraiserTest extends TestCase
         $auction->addBid(new Bid($maria, 2150));
         $auction->addBid(new Bid($joao, $highestBidValue3));
 
-        return [[$auction]];
+        return ['Auction with bids in random order' => [$auction]];
     }
 
     //**------- TESTS -------**//
