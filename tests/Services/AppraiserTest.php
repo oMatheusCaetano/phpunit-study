@@ -63,4 +63,115 @@ class AppraiserTest extends TestCase
         
         self::assertEquals($highestBidValue, $appraiser->getHighestBid()->getValue());
     }
+
+    public function testAppraiserShouldGetThreeHighestBidsFromAuctionInAscendingOrder(): void
+    {
+        $auction = new Auction('Ferrari 1220 0 Km');
+        
+        $maria = new User('Maria');
+        $joao = new User('João');
+        $ana = new User('Ana');
+        
+        $highestBidValue1 = 4600;
+        $highestBidValue2 = 4000;
+        $highestBidValue3 = 3800;
+        $auction->addBid(new Bid($joao, 1000));
+        $auction->addBid(new Bid($ana, 2000));
+        $auction->addBid(new Bid($maria, 2150));
+        $auction->addBid(new Bid($ana, 2200));
+        $auction->addBid(new Bid($joao, $highestBidValue3));
+        $auction->addBid(new Bid($maria, $highestBidValue2));
+        $auction->addBid(new Bid($ana, $highestBidValue1));
+        
+        $appraiser = new Appraiser();
+        $appraiser->evaluate($auction);
+        
+        self::assertCount(3, $appraiser->getThreeHighestBids());
+        self::assertEquals(
+            $highestBidValue1,
+            $appraiser->getThreeHighestBids()[0]->getValue()
+        );
+        self::assertEquals(
+            $highestBidValue2,
+            $appraiser->getThreeHighestBids()[1]->getValue()
+        );
+        self::assertEquals(
+            $highestBidValue3,
+            $appraiser->getThreeHighestBids()[2]->getValue()
+        );
+    }
+
+    public function testAppraiserShouldGetThreeHighestBidsFromAuctionInDescendingOrder(): void
+    {
+        $auction = new Auction('Ferrari 1220 0 Km');
+        
+        $maria = new User('Maria');
+        $joao = new User('João');
+        $ana = new User('Ana');
+        
+        $highestBidValue1 = 4600;
+        $highestBidValue2 = 4000;
+        $highestBidValue3 = 3800;
+        $auction->addBid(new Bid($ana, $highestBidValue1));
+        $auction->addBid(new Bid($maria, $highestBidValue2));
+        $auction->addBid(new Bid($joao, $highestBidValue3));
+        $auction->addBid(new Bid($ana, 2200));
+        $auction->addBid(new Bid($maria, 2150));
+        $auction->addBid(new Bid($joao, 1000));
+        $auction->addBid(new Bid($ana, 2000));
+        
+        $appraiser = new Appraiser();
+        $appraiser->evaluate($auction);
+        
+        self::assertCount(3, $appraiser->getThreeHighestBids());
+        self::assertEquals(
+            $highestBidValue1,
+            $appraiser->getThreeHighestBids()[0]->getValue()
+        );
+        self::assertEquals(
+            $highestBidValue2,
+            $appraiser->getThreeHighestBids()[1]->getValue()
+        );
+        self::assertEquals(
+            $highestBidValue3,
+            $appraiser->getThreeHighestBids()[2]->getValue()
+        );
+    }
+
+    public function testAppraiserShouldGetThreeHighestBidsFromAuctionInRandomOrder(): void
+    {
+        $auction = new Auction('Ferrari 1220 0 Km');
+        
+        $maria = new User('Maria');
+        $joao = new User('João');
+        $ana = new User('Ana');
+        
+        $highestBidValue1 = 4600;
+        $highestBidValue2 = 4000;
+        $highestBidValue3 = 3800;
+        $auction->addBid(new Bid($maria, $highestBidValue2));
+        $auction->addBid(new Bid($ana, 2200));
+        $auction->addBid(new Bid($joao, 1000));
+        $auction->addBid(new Bid($ana, $highestBidValue1));
+        $auction->addBid(new Bid($ana, 2000));
+        $auction->addBid(new Bid($maria, 2150));
+        $auction->addBid(new Bid($joao, $highestBidValue3));
+        
+        $appraiser = new Appraiser();
+        $appraiser->evaluate($auction);
+        
+        self::assertCount(3, $appraiser->getThreeHighestBids());
+        self::assertEquals(
+            $highestBidValue1,
+            $appraiser->getThreeHighestBids()[0]->getValue()
+        );
+        self::assertEquals(
+            $highestBidValue2,
+            $appraiser->getThreeHighestBids()[1]->getValue()
+        );
+        self::assertEquals(
+            $highestBidValue3,
+            $appraiser->getThreeHighestBids()[2]->getValue()
+        );
+    }
 }

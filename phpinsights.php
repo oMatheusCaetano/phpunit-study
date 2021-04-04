@@ -70,6 +70,7 @@ return [
         NunoMaduro\PhpInsights\Domain\Insights\Composer\ComposerMustBeValid::class,
         PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineEndingsSniff::class,
         PhpCsFixer\Fixer\Basic\BracesFixer::class,
+        SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff::class,
     ],
 
     'config' => [],
