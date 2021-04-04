@@ -72,6 +72,7 @@ return [
         NunoMaduro\PhpInsights\Domain\Insights\Composer\ComposerMustBeValid::class,
         SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff::class,
         SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class,
+        SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff::class,
     ],
 
     'config' => [],

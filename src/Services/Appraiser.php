@@ -31,7 +31,9 @@ class Appraiser
     public function evaluate(Auction $auction): void
     {
         if (empty($auction->getBids())) {
-            throw new EmptyAuctionException('Can not evaluate an auction with no bids.');
+            throw new EmptyAuctionException(
+                'Can not evaluate an auction with no bids.'
+            );
         }
 
         $this
