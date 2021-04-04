@@ -2,7 +2,8 @@
     "name": "omatheuscaetano/phpunit-study",
     "description": "Project created to study PHP Unit lib",
     "scripts": {
-        "php-insights": "./vendor/bin/phpinsights"
+        "php-insights": "./vendor/bin/phpinsights",
+        "phpunit": "./vendor/bin/phpunit"
     },
     "autoload": {
         "psr-4": {
@@ -10,6 +11,7 @@
         }
     },
     "require-dev": {
-        "nunomaduro/phpinsights": "^1.14"
+        "nunomaduro/phpinsights": "^1.14",
+        "phpunit/phpunit": "^9"
     }
 }
