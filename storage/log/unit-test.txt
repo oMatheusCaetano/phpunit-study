@@ -11,4 +11,5 @@ Appraiser (PHPUnitStudy\Study\Tests\Services\Appraiser)
  [x] Appraiser should get three highest bids from auction with data set "Auction with bids in descending order"
  [x] Appraiser should get three highest bids from auction with data set "Auction with bids in random order"
  [x] Auction with no bids cant be evaluated
+ [x] Appraiser should not evaluate finished auction
 

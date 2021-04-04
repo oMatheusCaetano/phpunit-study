@@ -4,6 +4,7 @@ namespace PHPUnitStudy\Study\Tests\Services;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnitStudy\Study\Exceptions\EmptyAuctionException;
+use PHPUnitStudy\Study\Exceptions\FinishedAuctionException;
 use PHPUnitStudy\Study\Model\Auction;
 use PHPUnitStudy\Study\Model\Bid;
 use PHPUnitStudy\Study\Model\User;
@@ -131,7 +132,7 @@ class AppraiserTest extends TestCase
         );
     }
 
-    public function testAuctionWithNoBidsCantBeEvaluated()
+    public function testAuctionWithNoBidsCantBeEvaluated(): void
     {
         //* Arrange
         $auction = new Auction('Fiat 140 0Km');
@@ -141,6 +142,20 @@ class AppraiserTest extends TestCase
         $this->expectExceptionMessage('Can not evaluate an auction with no bids.');
 
         //* Act
+        $this->appraiser->evaluate($auction);
+    }
+
+    public function testAppraiserShouldNotEvaluateFinishedAuction(): void
+    {
+        //* Arrange
+        $auction = new Auction('Fiat 140 0Km');
+
+        //* Assert
+        $this->expectException(FinishedAuctionException::class);
+        $this->expectExceptionMessage('Can not evaluate an finished.');
+
+        //* Act
+        $auction->setFinished(true);
         $this->appraiser->evaluate($auction);
     }
 }

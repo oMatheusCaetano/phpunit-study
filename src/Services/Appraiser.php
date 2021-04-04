@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPUnitStudy\Study\Services;
 
 use PHPUnitStudy\Study\Exceptions\EmptyAuctionException;
+use PHPUnitStudy\Study\Exceptions\FinishedAuctionException;
 use PHPUnitStudy\Study\Model\Auction;
 use PHPUnitStudy\Study\Model\Bid;
 
@@ -30,6 +31,12 @@ class Appraiser
 
     public function evaluate(Auction $auction): void
     {
+        if ($auction->isFinished()) {
+            throw new FinishedAuctionException(
+                'Can not evaluate an finished.'
+            );
+        }
+
         if (empty($auction->getBids())) {
             throw new EmptyAuctionException(
                 'Can not evaluate an auction with no bids.'

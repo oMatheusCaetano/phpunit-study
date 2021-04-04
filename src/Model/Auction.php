@@ -11,10 +11,12 @@ class Auction
     /** @var array<Bid> $bids */
     private array $bids;
     private string $description;
+    private bool $finished;
 
     public function __construct(string $description)
     {
         $this->setDescription($description);
+        $this->setFinished(false);
         $this->setBids([]);
     }
 
@@ -29,7 +31,7 @@ class Auction
         array_push($this->bids, $bid);
         return $this;
     }
-
+    
     /** @return array<Bid> */
     public function getBids(): array
     {
@@ -39,6 +41,11 @@ class Auction
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function isFinished(): bool
+    {
+        return $this->finished;
     }
 
     /** @param array<Bid> $bids */
@@ -51,6 +58,12 @@ class Auction
     public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    public function setFinished(bool $finished): self
+    {
+        $this->finished = $finished;
         return $this;
     }
 
