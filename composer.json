@@ -1,4 +1,9 @@
 {
+    "name": "omatheuscaetano/phpunit-study",
+    "description": "Project created to study PHP Unit lib",
+    "scripts": {
+        "php-insights": "./vendor/bin/phpinsights"
+    },
     "autoload": {
         "psr-4": {
             "PHPUnitStudy\\Study\\": "src/"
