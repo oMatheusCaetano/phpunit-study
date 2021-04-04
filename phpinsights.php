@@ -65,11 +65,11 @@ return [
         PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer::class,
         PhpCsFixer\Fixer\Whitespace\NoWhitespaceInBlankLineFixer::class,
 
+        PhpCsFixer\Fixer\Basic\BracesFixer::class,
+        PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineEndingsSniff::class,
         NunoMaduro\PhpInsights\Domain\Sniffs\ForbiddenSetterSniff::class,
         NunoMaduro\PhpInsights\Domain\Insights\ForbiddenNormalClasses::class,
         NunoMaduro\PhpInsights\Domain\Insights\Composer\ComposerMustBeValid::class,
-        PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineEndingsSniff::class,
-        PhpCsFixer\Fixer\Basic\BracesFixer::class,
         SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff::class,
         SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class,
     ],

@@ -3,6 +3,7 @@
 namespace PHPUnitStudy\Study\Tests\Services;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnitStudy\Study\Exceptions\EmptyAuctionException;
 use PHPUnitStudy\Study\Model\Auction;
 use PHPUnitStudy\Study\Model\Bid;
 use PHPUnitStudy\Study\Model\User;
@@ -128,5 +129,18 @@ class AppraiserTest extends TestCase
             $highestBidValue3,
             $this->appraiser->getThreeHighestBids()[2]->getValue()
         );
+    }
+
+    public function testAuctionWithNoBidsCantBeEvaluated()
+    {
+        //* Arrange
+        $auction = new Auction('Fiat 140 0Km');
+        
+        //* Assert
+        $this->expectException(EmptyAuctionException::class);
+        $this->expectExceptionMessage('Can not evaluate an auction with no bids.');
+
+        //* Act
+        $this->appraiser->evaluate($auction);
     }
 }
