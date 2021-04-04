@@ -1,7 +1,10 @@
 {
     "autoload": {
         "psr-4": {
-            "Alura\\Leilao\\": "src/"
+            "PHPUnitStudy\\Study\\": "src/"
         }
+    },
+    "require-dev": {
+        "nunomaduro/phpinsights": "^1.14"
     }
 }

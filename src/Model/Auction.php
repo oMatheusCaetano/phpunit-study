@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Leilao\Model;
+namespace PHPUnitStudy\Study\Model;
 
 class Auction
 {
