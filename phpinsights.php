@@ -51,7 +51,8 @@ return [
     */
 
     'exclude' => [
-        'phpinsights.php'
+        'phpinsights.php',
+        'test-*.php'
     ],
 
     'add' => [
