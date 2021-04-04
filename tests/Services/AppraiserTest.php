@@ -10,6 +10,15 @@ use PHPUnitStudy\Study\Services\Appraiser;
 
 class AppraiserTest extends TestCase
 {
+    private Appraiser $appraiser;
+
+    //**------- SET UP -------**//
+    public function setUp(): void
+    {
+        $this->appraiser = new Appraiser();
+    }
+
+    //**------- DATA PROVIDERS -------**//
     public function createAuctionInAscendingOrder(): array
     {
         $auction = new Auction('Ferrari 1220 0 Km');
@@ -76,6 +85,7 @@ class AppraiserTest extends TestCase
         return [[$auction]];
     }
 
+    //**------- TESTS -------**//
     /**
      * @dataProvider createAuctionInAscendingOrder
      * @dataProvider createAuctionInDescendingOrder
@@ -84,12 +94,11 @@ class AppraiserTest extends TestCase
     public function testAppraiserShouldGetHighestBidFromAuction(Auction $auction): void
     {      
         //! Act
-        $appraiser = new Appraiser();
-        $appraiser->evaluate($auction);
+        $this->appraiser->evaluate($auction);
 
         //! Assert
         $highestBidValue = 4600;
-        self::assertEquals($highestBidValue, $appraiser->getHighestBid()->getValue());
+        self::assertEquals($highestBidValue, $this->appraiser->getHighestBid()->getValue());
     }
 
     /**
@@ -100,25 +109,24 @@ class AppraiserTest extends TestCase
     public function testAppraiserShouldGetThreeHighestBidsFromAuction(Auction $auction): void
     {        
         //! Act
-        $appraiser = new Appraiser();
-        $appraiser->evaluate($auction);
+        $this->appraiser->evaluate($auction);
         
         //! Assert
         $highestBidValue1 = 4600;
         $highestBidValue2 = 4000;
         $highestBidValue3 = 3800;
-        self::assertCount(3, $appraiser->getThreeHighestBids());
+        self::assertCount(3, $this->appraiser->getThreeHighestBids());
         self::assertEquals(
             $highestBidValue1,
-            $appraiser->getThreeHighestBids()[0]->getValue()
+            $this->appraiser->getThreeHighestBids()[0]->getValue()
         );
         self::assertEquals(
             $highestBidValue2,
-            $appraiser->getThreeHighestBids()[1]->getValue()
+            $this->appraiser->getThreeHighestBids()[1]->getValue()
         );
         self::assertEquals(
             $highestBidValue3,
-            $appraiser->getThreeHighestBids()[2]->getValue()
+            $this->appraiser->getThreeHighestBids()[2]->getValue()
         );
     }
 }
