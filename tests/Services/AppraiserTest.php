@@ -19,7 +19,7 @@ class AppraiserTest extends TestCase
     }
 
     //**------- DATA PROVIDERS -------**//
-    public function createAuctionInAscendingOrder(): array
+    public function createAuctionWithBidsInAscendingOrder(): array
     {
         $auction = new Auction('Ferrari 1220 0 Km');
         
@@ -41,7 +41,7 @@ class AppraiserTest extends TestCase
         return [[$auction]];
     }
 
-    public function createAuctionInDescendingOrder(): array
+    public function createAuctionWithBidsInDescendingOrder(): array
     {
         $auction = new Auction('Ferrari 1220 0 Km');
         
@@ -63,7 +63,7 @@ class AppraiserTest extends TestCase
         return [[$auction]];
     }
 
-    public function createAuctionInRandomOrder(): array
+    public function createAuctionWithBidsInRandomOrder(): array
     {
         $auction = new Auction('Ferrari 1220 0 Km');
         
@@ -87,31 +87,31 @@ class AppraiserTest extends TestCase
 
     //**------- TESTS -------**//
     /**
-     * @dataProvider createAuctionInAscendingOrder
-     * @dataProvider createAuctionInDescendingOrder
-     * @dataProvider createAuctionInRandomOrder
+     * @dataProvider createAuctionWithBidsInAscendingOrder
+     * @dataProvider createAuctionWithBidsInDescendingOrder
+     * @dataProvider createAuctionWithBidsInRandomOrder
      */
     public function testAppraiserShouldGetHighestBidFromAuction(Auction $auction): void
     {      
-        //! Act
+        //* Act
         $this->appraiser->evaluate($auction);
 
-        //! Assert
+        //* Assert
         $highestBidValue = 4600;
         self::assertEquals($highestBidValue, $this->appraiser->getHighestBid()->getValue());
     }
 
     /**
-     * @dataProvider createAuctionInAscendingOrder
-     * @dataProvider createAuctionInDescendingOrder
-     * @dataProvider createAuctionInRandomOrder
+     * @dataProvider createAuctionWithBidsInAscendingOrder
+     * @dataProvider createAuctionWithBidsInDescendingOrder
+     * @dataProvider createAuctionWithBidsInRandomOrder
      */
     public function testAppraiserShouldGetThreeHighestBidsFromAuction(Auction $auction): void
     {        
-        //! Act
+        //* Act
         $this->appraiser->evaluate($auction);
         
-        //! Assert
+        //* Assert
         $highestBidValue1 = 4600;
         $highestBidValue2 = 4000;
         $highestBidValue3 = 3800;
