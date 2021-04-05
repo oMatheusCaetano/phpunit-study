@@ -31,7 +31,7 @@ class Auction
         array_push($this->bids, $bid);
         return $this;
     }
-    
+
     /** @return array<Bid> */
     public function getBids(): array
     {
