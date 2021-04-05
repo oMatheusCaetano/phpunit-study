@@ -8,9 +8,12 @@ use PHPUnitStudy\Study\Exceptions\ConsecutiveBidsException;
 
 class Auction
 {
+    private int $id;
+
     /** @var array<Bid> $bids */
     private array $bids;
     private string $description;
+    private \DateTimeInterface $startDate;
     private bool $finished;
 
     public function __construct(string $description)
@@ -32,6 +35,20 @@ class Auction
         return $this;
     }
 
+    public function hasMoreThanDays(int $quantityOfDays): bool
+    {
+        $today = new \DateTime();
+        $gap = $this->dataInicio->diff($today);
+
+        return $gap->days > $quantityOfDays;
+    }
+    
+    //*------- GETTERS AND SETTERS -------*//
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     /** @return array<Bid> */
     public function getBids(): array
     {
@@ -43,9 +60,20 @@ class Auction
         return $this->description;
     }
 
+    public function getStartDate(): \DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
     public function isFinished(): bool
     {
         return $this->finished;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /** @param array<Bid> $bids */
@@ -58,6 +86,12 @@ class Auction
     public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    public function setStartdate(\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
         return $this;
     }
 
